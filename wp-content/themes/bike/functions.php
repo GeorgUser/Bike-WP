@@ -268,3 +268,55 @@ function bike_social($class)
 }
 
 add_theme_support('woocommerce');
+
+
+// price in hrn
+function get_price_multiplier($prise)
+{
+    if (empty($dollar_rate = get_transient('dollar_rate'))) {
+        $result = CallAPI('https://api.privatbank.ua/p24api/pubinfo?exchange&json&coursid=11');
+        $json = json_decode($result, true);
+        $dollar_rate = $json[0]['sale'];
+        // save value in DB on 1 day
+        set_transient('dollar_rate', $dollar_rate, 86000);
+    };
+
+    $dollar_rate = number_format(round($dollar_rate * $prise), $decimals = 2, $dec_point = ".", $thousands_sep = ",");
+    return $dollar_rate;
+}
+
+function bike_change_product_price_display($price_tag)
+{
+    global $product;
+    $id = $product->get_id();
+    $product = wc_get_product($id);
+
+    $regular = $product->get_regular_price();
+    $sale = $product->get_sale_price();
+    if ($sale) {
+        $price_tag .= '<p class="price custom"><del><span class="woocommerce-Price-amount amount">(' . get_price_multiplier($regular) . '<span class="woocommerce-Price-currencySymbol">₴)</span></span></del> <ins><span class="woocommerce-Price-amount amount">' . get_price_multiplier($sale) . '<span class="woocommerce-Price-currencySymbol">₴</span></span></ins></p>';
+    } else {
+        $price_tag .= '<p class="woocommerce-Price-amount amount">(' . get_price_multiplier($regular) . '<span class="woocommerce-Price-currencySymbol">₴)</span></p>';
+    }
+    return $price_tag;
+}
+
+add_filter('woocommerce_get_price_html', 'bike_change_product_price_display');
+add_filter('woocommerce_cart_item_price', 'bike_change_product_price_display');
+
+
+function CallAPI($url)
+{
+    $curl = curl_init();
+
+    curl_setopt($curl, CURLOPT_POST, 1);
+
+    curl_setopt($curl, CURLOPT_URL, $url);
+    curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
+
+    $result = curl_exec($curl);
+
+    curl_close($curl);
+
+    return $result;
+}
