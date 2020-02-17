@@ -1,0 +1,9 @@
+2020-02-16T23:14:17+00:00 CRITICAL Uncaught ArgumentCountError: Too few arguments to function get_price_multiplier(), 0 passed in C:\OpenServ\OSPanel\domains\bike\wp-content\themes\bike\functions.php on line 310 and exactly 1 expected in C:\OpenServ\OSPanel\domains\bike\wp-content\themes\bike\functions.php:285
+Stack trace:
+#0 C:\OpenServ\OSPanel\domains\bike\wp-content\themes\bike\functions.php(310): get_price_multiplier()
+#1 C:\OpenServ\OSPanel\domains\bike\wp-includes\class-wp-hook.php(290): bike_change_product_price_display('<span class="wo...')
+#2 C:\OpenServ\OSPanel\domains\bike\wp-includes\plugin.php(206): WP_Hook->apply_filters('<span class="wo...', Array)
+#3 C:\OpenServ\OSPanel\domains\bike\wp-content\plugins\woocommerce\includes\abstracts\abstract-wc-product.php(1767): apply_filters('woocommerce_get...', '<span class="wo...', Object(WC_Product_Simple))
+#4 C:\OpenServ\OSPanel\domains\bike\wp-content\plugins\woocommerce\templates\single-product\price.php(25): WC_Product->get_price_html()
+#5 C:\OpenServ\OSPanel\domains\bike\wp-content\pl in C:\OpenServ\OSPanel\domains\bike\wp-content\themes\bike\functions.php on line 285
+

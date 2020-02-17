@@ -1,0 +1,37 @@
+2020-02-14T09:15:01+00:00 CRITICAL Uncaught Error: Call to undefined function woocommerce_product_variation_get_regular_price() in C:\OpenServ\OSPanel\domains\bike\wp-content\themes\bike\functions.php:298
+Stack trace:
+#0 C:\OpenServ\OSPanel\domains\bike\wp-includes\class-wp-hook.php(288): custom_price('200', Object(WC_Product_Simple))
+#1 C:\OpenServ\OSPanel\domains\bike\wp-includes\plugin.php(206): WP_Hook->apply_filters('200', Array)
+#2 C:\OpenServ\OSPanel\domains\bike\wp-content\plugins\woocommerce\includes\abstracts\abstract-wc-data.php(751): apply_filters('woocommerce_pro...', '200', Object(WC_Product_Simple))
+#3 C:\OpenServ\OSPanel\domains\bike\wp-content\plugins\woocommerce\includes\abstracts\abstract-wc-product.php(277): WC_Data->get_prop('regular_price', 'view')
+#4 C:\OpenServ\OSPanel\domains\bike\wp-content\plugins\woocommerce\includes\abstracts\abstract-wc-product.php(1517): WC_Product->get_regular_price('view')
+#5 C:\OpenServ\OSPanel\domains\bike\wp-content\plugins\woocommerce\includes\wc-template-functions.php(626): WC_Product->is_ in C:\OpenServ\OSPanel\domains\bike\wp-content\themes\bike\functions.php on line 298
+
+2020-02-14T09:16:28+00:00 CRITICAL Uncaught ArgumentCountError: Too few arguments to function apply_filters(), 1 passed in C:\OpenServ\OSPanel\domains\bike\wp-content\themes\bike\functions.php on line 298 and exactly 2 expected in C:\OpenServ\OSPanel\domains\bike\wp-includes\plugin.php:181
+Stack trace:
+#0 C:\OpenServ\OSPanel\domains\bike\wp-content\themes\bike\functions.php(298): apply_filters('woocommerce_pro...')
+#1 C:\OpenServ\OSPanel\domains\bike\wp-includes\class-wp-hook.php(288): custom_price('200', Object(WC_Product_Simple))
+#2 C:\OpenServ\OSPanel\domains\bike\wp-includes\plugin.php(206): WP_Hook->apply_filters('200', Array)
+#3 C:\OpenServ\OSPanel\domains\bike\wp-content\plugins\woocommerce\includes\abstracts\abstract-wc-data.php(751): apply_filters('woocommerce_pro...', '200', Object(WC_Product_Simple))
+#4 C:\OpenServ\OSPanel\domains\bike\wp-content\plugins\woocommerce\includes\abstracts\abstract-wc-product.php(277): WC_Data->get_prop('regular_price', 'view')
+#5 C:\OpenServ\OSPanel\domains\bike\wp-content\plugins\woocommerce\includes\a in C:\OpenServ\OSPanel\domains\bike\wp-includes\plugin.php on line 181
+
+2020-02-14T11:12:59+00:00 CRITICAL Uncaught ArgumentCountError: Too few arguments to function apply_filters(), 1 passed in C:\OpenServ\OSPanel\domains\bike\wp-content\themes\bike\functions.php on line 299 and exactly 2 expected in C:\OpenServ\OSPanel\domains\bike\wp-includes\plugin.php:181
+Stack trace:
+#0 C:\OpenServ\OSPanel\domains\bike\wp-content\themes\bike\functions.php(299): apply_filters('custom_price')
+#1 C:\OpenServ\OSPanel\domains\bike\wp-includes\class-wp-hook.php(288): custom_price('200', Object(WC_Product_Simple))
+#2 C:\OpenServ\OSPanel\domains\bike\wp-includes\plugin.php(206): WP_Hook->apply_filters('200', Array)
+#3 C:\OpenServ\OSPanel\domains\bike\wp-content\plugins\woocommerce\includes\abstracts\abstract-wc-data.php(751): apply_filters('woocommerce_pro...', '200', Object(WC_Product_Simple))
+#4 C:\OpenServ\OSPanel\domains\bike\wp-content\plugins\woocommerce\includes\abstracts\abstract-wc-product.php(277): WC_Data->get_prop('regular_price', 'view')
+#5 C:\OpenServ\OSPanel\domains\bike\wp-content\plugins\woocommerce\includes\abstrac in C:\OpenServ\OSPanel\domains\bike\wp-includes\plugin.php on line 181
+
+2020-02-14T11:49:06+00:00 CRITICAL Uncaught ArgumentCountError: Too few arguments to function custom_price(), 1 passed in C:\OpenServ\OSPanel\domains\bike\wp-includes\class-wp-hook.php on line 288 and exactly 2 expected in C:\OpenServ\OSPanel\domains\bike\wp-content\themes\bike\functions.php:298
+Stack trace:
+#0 C:\OpenServ\OSPanel\domains\bike\wp-includes\class-wp-hook.php(288): custom_price('')
+#1 C:\OpenServ\OSPanel\domains\bike\wp-includes\class-wp-hook.php(312): WP_Hook->apply_filters(NULL, Array)
+#2 C:\OpenServ\OSPanel\domains\bike\wp-includes\plugin.php(478): WP_Hook->do_action(Array)
+#3 C:\OpenServ\OSPanel\domains\bike\wp-content\plugins\woocommerce\templates\content-single-product.php(60): do_action('woocommerce_sin...')
+#4 C:\OpenServ\OSPanel\domains\bike\wp-includes\template.php(724): require('C:\\OpenServ\\OSP...')
+#5 C:\OpenServ\OSPanel\domains\bike\wp-content\plugins\woocommerce\includes\wc-core-functions.php(195): load_template('C:\\OpenServ\\OSP...', false)
+#6 C:\OpenServ\OSPanel\domains\bike\wp-content\themes\bike\woocommerce\s in C:\OpenServ\OSPanel\domains\bike\wp-content\themes\bike\functions.php on line 298
+
