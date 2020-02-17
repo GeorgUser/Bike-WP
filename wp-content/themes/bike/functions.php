@@ -19,6 +19,11 @@ function floaat_scripts()
 
     wp_enqueue_style("style", get_stylesheet_directory_uri() . "/css/style.css");
 
+    // Localize script
+    $theme_vars = array(
+        'ajaxurl' => admin_url('admin-ajax.php'),
+    );
+    wp_localize_script('bundle', 'themeVars', $theme_vars);
 }
 
 add_action('wp_enqueue_scripts', 'floaat_scripts');
@@ -320,3 +325,59 @@ function CallAPI($url)
 
     return $result;
 }
+
+// filter-post
+
+
+function filter_post_asb()
+{
+    $of = array(
+        'year' => gmdate("Y", $_POST['of']),
+        'month' => gmdate("m", $_POST['of']),
+        'day' => gmdate("d", $_POST['of']),
+    );
+    $and = array(
+        'year' => gmdate("Y", $_POST['and']),
+        'month' => gmdate("m", $_POST['and']),
+        'day' => gmdate("d", $_POST['and']),
+    );
+
+    $args = array(
+        'post_type' => 'filter',
+        'orderby' => 'date',
+        'order' => 'DESC',
+        'date_query' => array(
+            array(
+                'after' => array( // после этой даты
+                    'year' => $of['year'],
+                    'month' => $of['month'],
+                    'day' => $of['day'],
+                ),
+                'before' => array( // до этой даты
+                    'year' => $and['year'],
+                    'month' => $and['month'],
+                    'day' => $and['day'],
+                ),
+                // 'inclusive'=> true
+            )
+        )
+    );
+    $query = new WP_Query($args);
+    if ($query->have_posts()) :
+        ?>
+        <?php while ($query->have_posts()) : $query->the_post(); ?>
+        <article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
+            <header class="entry-header">
+                <?php the_title('<h2 class="entry-title"><a href="' . esc_url(get_permalink()) . '" rel="bookmark">', '</a></h2>');?>
+                <img src="<?php the_post_thumbnail_url([100, 100]); ?>" alt="">
+            </header><!-- .entry-header -->
+        </article><!-- #post-## --><?php
+    endwhile; ?>
+        <?php wp_reset_postdata(); ?>
+    <?php
+    endif;
+    exit;
+}
+
+add_action('wp_ajax_filter', 'filter_post_asb');
+add_action('wp_ajax_nopriv_filter', 'filter_post_asb');
